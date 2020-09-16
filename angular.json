@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "givbox"
+    }
+  },
+  "defaultProject": "givbox",
+  "cli": {
+    "analytics": "3cc2d26e-2b6b-481a-9b3b-1602f4650607"
+  }
 }
