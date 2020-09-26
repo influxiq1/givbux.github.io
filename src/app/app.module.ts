@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { Test1Component } from './test1/test1.component';
+import { LocationComponent } from './location/location.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    Test1Component
+    Test1Component,
+    LocationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"></agm-marker>
     </agm-map>
@@ -6,7 +6,7 @@
     <h5>Address: {{address}}</h5>
     <div>Latitude: {{latitude}}</div>
     <div>Longitude: {{longitude}}</div>
-</div>
+</div> -->
 
 
 <!-- <a-scene embedded artoolkit='sourceType: webcam;'>
@@ -24,77 +24,55 @@
     <a-entity camera></a-entity>
 </a-scene> -->
 
-
-<!-- <div class="arjs-loader">
+<!-- 
+<div class="arjs-loader">
     <div>Loading, please wait...</div>
-  </div> -->
+</div> -->
 
-<!-- a-frame scene -->
-<!-- <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"> -->
-<!-- a-nft is the anchor that defines an Image Tracking entity -->
-<!-- on 'url' use the path to the Image Descriptors created before. -->
-<!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-<!-- <a-nft type="nft" url="../assets/images/ihop" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"> -->
-<!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-<!-- <a-entity gltf-model="../assets/gltf/jack_trigger/scene.gltf" scale="5 5 5" position="50 150 0">
-        </a-entity> 
-    </a-nft> -->
-<!-- static camera that moves according to the device movemenents -->
-<!-- <a-entity camera></a-entity>
+<!-- <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+    <a-nft type="nft" url="../assets/images/ihop" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+        <a-entity gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf" scale="5 5 5" position="50 150 0">
+        </a-entity>
+    </a-nft>
+    <a-entity camera></a-entity>
 </a-scene> -->
 
 
 
 
 
+<!-- 
 
-
-<!-- <div style='margin : 0px; overflow: hidden;'>
+<div style='margin : 0px; overflow: hidden;'>
 
     <div class="arjs-loader">
         <div>Loading, please wait...</div>
-    </div> -->
+    </div>
 
-<!-- a-frame scene -->
-<!-- <a-scene vr-mode-ui="enabled: false;" renderer='antialias: true; alpha: true; precision: mediump;' embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'> -->
+    <a-scene vr-mode-ui="enabled: false;" renderer='antialias: true; alpha: true; precision: mediump;' embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
 
-<!-- 
         <a-assets>
-            <video src="https://cors-anywhere.herokuapp.com/https://www.w3schools.com/html/mov_bbb.mp4" preload="auto" id="vid" response-type="arraybuffer" loop crossorigin webkit-playsinline autoplay muted playsinline>
-    </video>
-        </a-assets> -->
-
-<!-- <a-assets>
-            <a-asset-item id="tree" src="../assets/gltf/jack_trigger/scene.gltf"></a-asset-item>
-        </a-assets> -->
+            <a-asset-item id="tree" src="./assets/gltf/scene.gltf"></a-asset-item>
+        </a-assets>
 
 
 
-<!-- a-nft is the anchor that defines an Image Tracking entity -->
-<!-- on 'url' use the path to the Image Descriptors created before. -->
-<!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-<!-- <a-nft type="nft" url="../assets/images/ihop" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"> -->
-<!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-<!-- <a-entity gltf-model="../assets/gltf/jack_trigger/scene.gltf" scale="5 5 5" position="50 150 0">
-            </a-entity> -->
-<!-- <a-video src="#vid" position='0 0.5 0' width='300' height='175'>
-            </a-video> -->
-<!-- </a-nft> -->
-<!-- static camera that moves according to the device movemenents -->
-<!-- <a-entity camera gltf-model="##tree"></a-entity> -->
-<!-- <a-entity camera></a-entity>
+        <a-nft type="nft" url="../assets/images/ihop" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+        </a-nft>
+        <a-entity camera gltf-model="##tree"></a-entity>
+        <a-entity camera></a-entity>
     </a-scene>
 </div> -->
 
-<!-- 
-<div style="margin : 0px; overflow: hidden;">
+
+<!-- <div style="margin : 0px; overflow: hidden;">
     <div class="arjs-loader">
         <div>Loading, please wait...</div>
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: true;">
-        <a-nft type="nft" url="../assets/images/ihop" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
-            <a-entity gltf-model="../assets/gltf/jack_trigger/scene.gltf" scale="5 5 5" position="360 360 0">
+        <a-nft type="nft" url="../assets/images/ihop2" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5">
+            <a-entity gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf" scale="5 5 5" position="360 360 0">
             </a-entity>
         </a-nft>
         <a-entity camera></a-entity>
@@ -102,23 +80,20 @@
 </div> -->
 
 
-<!-- 
-<body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs='sourceType: webcam;'>
+<!-- <a-scene embedded arjs='sourceType: webcam;'>
 
-        <a-marker type='pattern' url='../assets/images/ihop.patt'>
-            <a-box position='0 0.5 0' material='color: red;'></a-box>
-        </a-marker>
+    <a-marker type='pattern' url='/assets/images/ihop.patt'>
+        <a-box position='0 0.5 0' material='color: red;'></a-box>
+    </a-marker>
 
-        <a-marker preset='hiro'>
-            <a-box position='0 0.5 0' material='color: green;'></a-box>
-        </a-marker>
+    <a-marker preset='hiro'>
+        <a-box position='0 0.5 0' material='color: green;'></a-box>
+    </a-marker>
 
-        <a-marker type='barcode' value='5'>
-            <a-box position='0 0.5 0' material='color: blue;'></a-box>
-        </a-marker>
+    <a-marker type='barcode' value='5'>
+        <a-box position='0 0.5 0' material='color: blue;'></a-box>
+    </a-marker>
 
-        <a-entity camera></a-entity>
-    </a-scene>
-</body> -->
+    <a-entity camera></a-entity>
+</a-scene> -->
 <router-outlet></router-outlet>
