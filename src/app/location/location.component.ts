@@ -9,8 +9,9 @@ export class LocationComponent implements OnInit {
   latitude: number;
   longitude: number;
   zoom: number;
-  address: string;
+  public address: string = '';
   private geoCoder;
+ public s = '';
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -23,28 +24,30 @@ export class LocationComponent implements OnInit {
 
 
   ngOnInit() {
+    this.s = '000000'
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
 
-      // let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-      // autocomplete.addListener("place_changed", () => {
-      //   this.ngZone.run(() => {
-      //     //get the place result
-      //     let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+      this.s = '00088888881111------000'
+    //   let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+    //   autocomplete.addListener("place_changed", () => {
+    //     this.ngZone.run(() => {
+    //       //get the place result
+    //       let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-      //     //verify result
-      //     if (place.geometry === undefined || place.geometry === null) {
-      //       return;
-      //     }
+    //       //verify result
+    //       if (place.geometry === undefined || place.geometry === null) {
+    //         return;
+    //       }
 
-      //     //set latitude, longitude and zoom
-      //     this.latitude = place.geometry.location.lat();
-      //     this.longitude = place.geometry.location.lng();
-      //     this.zoom = 12;
-      //   });
-      // });
+    //       //set latitude, longitude and zoom
+    //       this.latitude = place.geometry.location.lat();
+    //       this.longitude = place.geometry.location.lng();
+    //       this.zoom = 12;
+    //     });
+    //   });
     });
   }
 
@@ -55,6 +58,7 @@ export class LocationComponent implements OnInit {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;
+        this.s = '000++++++++++000'
         this.getAddress(this.latitude, this.longitude);
       });
     }
@@ -71,10 +75,15 @@ export class LocationComponent implements OnInit {
 
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log(results);
-      console.log(status);
+      console.log(results,'===');
+      console.log(results[0].formatted_address);
+      this.address = results[0].formatted_address;
+      this.s = '000==========000';
+      console.log(this.s);
+
       if (status === 'OK') {
         if (results[0]) {
+          this.address = results[0].formatted_address;
           this.zoom = 12;
           this.address = results[0].formatted_address;
         } else {
