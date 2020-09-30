@@ -58,7 +58,6 @@ export class LocationComponent implements OnInit {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;
-        this.s = '000++++++++++000'
         this.getAddress(this.latitude, this.longitude);
       });
     }

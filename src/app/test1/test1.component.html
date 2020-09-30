@@ -32,19 +32,42 @@
     </a-scene>
 </body> -->
 
+<!-- 
+<script>
+    window.onload = function() {
+        AFRAME.registerComponent('videohandler', {
+            init: function() {
+                var marker = this.el;
+                console.log(marker, '+++++++')
 
+                this.vid = document.querySelector("#Ihop");
+
+                console.log(vid, '+++++++')
+                marker.addEventListener('markerFound', function() {
+                    this.vid.play();
+                }.bind(this));
+
+                marker.addEventListener('markerLost', function() {
+                    this.vid.pause();
+                    this.vid.currentTime = 0;
+                }.bind(this));
+            }
+        });
+    };
+</script> -->
+<button mat-raised-button color="accent" [routerLink]="['/']" routerLinkActive="router-link-active" style="z-index: 999;">Back</button>
 <div class="arjs-loader">
     <div>Loading, please wait...</div>
 </div>
 <a-scene stats vr-mode-ui="enabled: false;" renderer='antialias: true; alpha: true; precision: mediump;' embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
     <!-- for ihop -->
-    <a-assets>
+    <a-assets *ngIf="parameterid == 'ihop'">
         <video src="https://s3.amazonaws.com/dev.givbux.com/assets/Ihop.mp4" preload="auto" id="Ihop" response-type="arraybuffer" loop autoplay autofocus playsinline>
     </video>
     </a-assets>
 
     <!-- for Staples -->
-    <a-assets>
+    <a-assets *ngIf="parameterid == 'staples'">
         <video src="https://s3.amazonaws.com/dev.givbux.com/assets/Staples+video.mp4" preload="auto" id="Staples" response-type="arraybuffer" loop autoplay autofocus playsinline>
     </video>
     </a-assets>
@@ -57,7 +80,7 @@
 
 
     <!-- for Maggianos -->
-    <a-assets>
+    <a-assets *ngIf="parameterid == 'maggianos'">
         <video src="https://s3.amazonaws.com/dev.givbux.com/assets/Maggianos.mp4" preload="auto" id="Maggianos" response-type="arraybuffer" loop autoplay autofocus playsinline>
     </video>
     </a-assets>
@@ -65,21 +88,21 @@
 
 
     <!-- for MCDonalds -->
-    <a-assets>
+    <!-- <a-assets *ngIf="parameterid == 'ihop'">
         <video src="https://s3.amazonaws.com/dev.givbux.com/assets/MCDonalds+video.mp4" preload="auto" id="MCDonalds" response-type="arraybuffer" loop autoplay autofocus playsinline>
     </video>
-    </a-assets>
+    </a-assets> -->
 
 
     <!-- for Disney -->
-    <a-assets>
+    <a-assets *ngIf="parameterid == 'disney'">
         <video src="https://s3.amazonaws.com/dev.givbux.com/assets/Disney+Video.mp4" preload="auto" id="Disney" response-type="arraybuffer" loop autoplay autofocus playsinline>
     </video>
     </a-assets>
 
 
     <!-- for BenfishGrill -->
-    <a-assets>
+    <a-assets *ngIf="parameterid == 'benfishGrill'">
         <video src="https://s3.amazonaws.com/dev.givbux.com/assets/BenfishGrill.mp4" preload="auto" id="BenfishGrill" response-type="arraybuffer" loop autoplay autofocus playsinline>
     </video>
     </a-assets>
@@ -87,14 +110,14 @@
 
     <!-- for ihop -->
 
-    <a-nft videohandler type='nft' url='/assets/images/ihop2'>
-        <a-video src="#Ihop" position="10 -10 -175" rotation="-90 0 0" scale="10 5 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000;" width='140' height='140'>
+    <a-nft videohandler type='nft' url='/assets/images/ihop2' *ngIf="parameterid == 'ihop'">
+        <a-video src="#Ihop" position="50 -10 -175" rotation="-90 0 0" scale="10 10 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000;" width='120' height='120'>
         </a-video>
     </a-nft>
 
     <!-- Staples -->
 
-    <a-nft videohandler type='nft' url='/assets/images/Staples'>
+    <a-nft videohandler type='nft' url='/assets/images/Staples' *ngIf="parameterid == 'staples'">
         <a-video src="#Staples" position="10 -10 -175" rotation="-90 0 0" scale="5 4 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000;" width='140' height='140'>
         </a-video>
     </a-nft>
@@ -108,7 +131,7 @@
 
     <!-- maggianos -->
 
-    <a-nft videohandler type='nft' url='/assets/images/maggianos'>
+    <a-nft videohandler type='nft' url='/assets/images/maggianos' *ngIf="parameterid == 'maggianos'">
         <a-video src="#Maggianos" position="10 -10 -175" rotation="-90 0 0" scale="9 4 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000;" width='140' height='140'>
         </a-video>
     </a-nft>
@@ -124,7 +147,7 @@
 
 
     <!-- disney -->
-    <a-nft videohandler type='nft' url='/assets/images/disney'>
+    <a-nft videohandler type='nft' url='/assets/images/disney' *ngIf="parameterid == 'disney'">
         <a-video src="#Disney" position="10 -10 -175" rotation="-90 0 0" scale="5 4 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000;" width='140' height='140'>
         </a-video>
     </a-nft>
@@ -132,8 +155,8 @@
 
 
     <!-- BenfishGrill -->
-    <a-nft videohandler type='nft' url='/assets/images/BenfishGrill'>
-        <a-video src="#BenfishGrill" position="10 -10 -175" rotation="-90 0 0" scale="10 5 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000;" width='140' height='140'>
+    <a-nft videohandler type='nft' url='/assets/images/BenfishGrill' *ngIf="parameterid == 'benfishGrill'">
+        <a-video src="#BenfishGrill" position="15 -10 -175" rotation="-90 0 0" scale="15 7 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000;" width='140' height='140'>
         </a-video>
     </a-nft>
     <a-entity camera></a-entity>
