@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -10,9 +11,9 @@ import { ApiService } from '../api.service';
 export class TracklistComponent implements OnInit {
 
   public user_type: any;
-  public contactuslistFlag:boolean=false;
-  componentRef: any;
-  datasource: any;
+  public contactuslistFlag: boolean = false;
+  // componentRef: any;
+  // datasource: any;
 
 
   // use for Download the PDF
@@ -27,46 +28,46 @@ export class TracklistComponent implements OnInit {
 
 
 
-  
+
 
   public status: any = [{ val: 0, name: 'Active' }, { val: 1, name: 'Inactive' }, { val: 1, name: 'Lock' }];
 
-  
+
   statusarray: any = [{ val: 0, name: 'Active' }, { val: 1, name: 'Inactive' }, { val: 3, name: 'Lock' }];
 
-  
-  emailarray: any = [{ val: 'sourotest222@gmail.com', name: 'sourotest222@gmail.com' }, { val: 'octtest@yopmail.com', name: 'octtest@yopmail.com' }, { val: 'septest@yopmail.com', name: 'septest@yopmail.com' }];
 
- 
+  // emailarray: any = [{ val: 'sourotest222@gmail.com', name: 'sourotest222@gmail.com' }, { val: 'octtest@yopmail.com', name: 'octtest@yopmail.com' }, { val: 'septest@yopmail.com', name: 'septest@yopmail.com' }];
+
+
   editroute: any = 'param';
 
 
-  
+
   modify_header_array: any = {
-      address: 'Address',
+    address: 'Address',
   };
 
 
-  
-  tabledata_header_skip: any = ['ip'];  
+
+  tabledata_header_skip: any = ['ip'];
 
 
 
-  
-  tabledata_detail_skip: any = ['ip','_id','email_search','name_search']; 
+
+  tabledata_detail_skip: any = ['ip', '_id', 'email_search', 'name_search'];
 
 
 
   tabledata_detail_datatype: any = [{
-      key: 'images',
-      value: 'image',
-      fileurl: 'http://18.222.26.198/upload/brandimages/'             
+    key: 'images',
+    value: 'image',
+    fileurl: 'http://18.222.26.198/upload/brandimages/'
   }];
 
 
   updateendpoint = 'addorupdatedata';
 
-  deleteendpoint = 'api/deletecontactusdata';          
+  deleteendpoint = 'api/deletecontactusdata';
 
 
   tablename = 'users';
@@ -82,90 +83,91 @@ export class TracklistComponent implements OnInit {
   date_search_endpoint: any = 'datalist';
 
   limitcond: any = {
-      limit: 10,
-      skip: 0,
-      pagecount: 1
+    limit: 10,
+    skip: 0,
+    pagecount: 1
   };
 
-  
-  libdata: any = {
 
-      detailview_override: [
-          { key: 'addedtime', val: 'Contacted On' },
-        ],
+ public libdata: any = {
 
-      updateendpoint: 'statusupdate',        
-      hideeditbutton: true, 
-      hidedeletebutton: false,   
-      hideviewbutton: false,  
-      hidestatustogglebutton: true, 
-      hideaction: false, 
-      tableheaders: ['trackablename','address', 'addedtime'], 
-      
-      
+    detailview_override: [
+      { key: 'addedtime', val: 'Contacted On' },
+    ],
+
+    updateendpoint: 'statusupdate',
+    hideeditbutton: true,
+    hidedeletebutton: false,
+    hideviewbutton: false,
+    hidestatustogglebutton: true,
+    hideaction: false,
+    tableheaders: ['trackablename', 'address', 'addedtime'],
+
+
   };
 
   sortdata: any = {
-      type: 'desc',                                             
-      field: '_id',                                 
-      options: ['addedtime']     
+    type: 'desc',
+    field: '_id',
+    options: ['addedtime']
   };
 
 
 
   date_search_source: any = 'admin_blog_list';
 
-  datacollection: any = 'api/getcontactusdata';       
+  datacollection: any = 'getcontactusdata';
 
-  date_search_source_count: any = 0;             
+  date_search_source_count: any = 0;
 
   search_settings: any = {
 
-      datesearch: [{ startdatelabel: 'Contacted On Start Date', enddatelabel: 'Conatcted On End Date', submit: 'Search', field: 'created_datetime' }],   
+    // datesearch: [{ startdatelabel: 'Contacted On Start Date', enddatelabel: 'Conatcted On End Date', submit: 'Search', field: 'created_datetime' }],   
 
-      //selectsearch:[{ label: 'Search By Status', field: 'status', values: this.status }], 
+    //selectsearch:[{ label: 'Search By Status', field: 'status', values: this.status }], 
 
-      textsearch:[{label:"Search By Name",field:'name_search'},{label:"Search by Email",field:'email_search'}],
+    textsearch: [{ label: "Search By address", field: 'address' },
+    { label: "Search by trackablename", field: 'trackablename' }],
 
-      
+
   };
 
-  constructor(public router: Router, private route: ActivatedRoute, public _apiService: ApiService) {
+  constructor(public router: Router, private route: ActivatedRoute, public _apiService: ApiService, private cookieService: CookieService) {
 
-      // this.user_type = JSON.parse(this.cookieService.get('type'));
+    // this.user_type = JSON.parse(this.cookieService.get('type'));
 
 
-      this.datasource = '';
-      const endpoint = 'addalldata'; 
-      const endpointc = 'addalldata-count'; 
-      
-      const data: any = {
-          condition: {
-              limit: 10,
-              skip: 0
-          },
-          sort: {
-              type: 'desc',         
-              field: '_id',       
-          }
+    // this.datasource = '';
+    const endpoint = 'addalldata';
+    const endpointc = 'addalldata-count';
 
-      };
-      this._apiService.httpViaPost(endpointc, data).subscribe((res: any) => {
-          this.date_search_source_count = res.count;
+    const data: any = {
+      condition: {
+        limit: 10,
+        skip: 0
+      },
+      sort: {
+        type: 'desc',
+        field: '_id',
+      }
 
-      }, error => {
-          console.log('Oooops!');
-      });
+    };
+    this._apiService.httpViaPost(endpointc, data).subscribe((res: any) => {
+      this.date_search_source_count = res.count;
 
-      this._apiService.httpViaPost(endpoint, data).subscribe((response: any) => {
-          this.myTable = response.result.res;
-          if (this.myTable.length == 0) {
-              this.contactuslistFlag = true;
-            }
+    }, error => {
+      console.log('Oooops!');
+    });
 
-      }, error => {
-          console.log('Oooops!');
-      });
+    this._apiService.httpViaPost(endpoint, data).subscribe((response: any) => {
+      this.myTable = response.result.res;
+      if (this.myTable.length == 0) {
+        this.contactuslistFlag = true;
+      }
+
+    }, error => {
+      console.log('Oooops!');
+    });
 
   }
 
