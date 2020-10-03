@@ -11,6 +11,8 @@ import { LocationComponent } from './location/location.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
+import { HttpClientModule } from '@angular/common/http';
+import { TracklistComponent } from './tracklist/tracklist.component';
 
 
 @NgModule({
@@ -18,11 +20,13 @@ import { DemoMaterialModule } from './material-module';
     AppComponent,
     Test1Component,
     LocationComponent,
-    HomeComponent
+    HomeComponent,
+    TracklistComponent
   ],
   imports: [
     DemoMaterialModule,
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({

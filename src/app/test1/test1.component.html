@@ -32,34 +32,56 @@
     </a-scene>
 </body> -->
 
-<!-- 
-<script>
+
+<!-- <script>
     window.onload = function() {
         AFRAME.registerComponent('videohandler', {
             init: function() {
                 var marker = this.el;
-                console.log(marker, '+++++++')
+                // console.log(marker, '+++++++')
 
                 this.vid = document.querySelector("#Ihop");
 
-                console.log(vid, '+++++++')
+                // console.log(vid, '+++++++')
                 marker.addEventListener('markerFound', function() {
                     this.vid.play();
+                    alert(marker)
                 }.bind(this));
 
                 marker.addEventListener('markerLost', function() {
                     this.vid.pause();
                     this.vid.currentTime = 0;
+                    alert(marker)
                 }.bind(this));
             }
         });
     };
 </script> -->
+
+<!-- 
+<script>
+    AFRAME.registerComponent('scale-on-mouseenter', {
+        schema: {
+            to: {
+                default: '2.5 2.5 2.5',
+                type: 'vec3'
+            }
+        },
+
+        init: function() {
+            var data = this.data;
+            var el = this.el;
+            this.el.addEventListener('mouseenter', function() {
+                el.object3D.scale.copy(data.to);
+            });
+        }
+    });
+</script> -->
 <button mat-raised-button color="accent" [routerLink]="['/']" routerLinkActive="router-link-active" style="z-index: 999;">Back</button>
 <div class="arjs-loader">
     <div>Loading, please wait...</div>
 </div>
-<a-scene stats vr-mode-ui="enabled: false;" renderer='antialias: true; alpha: true; precision: mediump;' embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
+<a-scene stats vr-mode-ui="enabled: false;" renderer='antialias: true; alpha: true; precision: mediump;' embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: true; ' device-orientation-permission-ui="enabled: false">
     <!-- for ihop -->
     <a-assets *ngIf="parameterid == 'ihop'">
         <video src="https://s3.amazonaws.com/dev.givbux.com/assets/Ihop.mp4" preload="auto" id="Ihop" response-type="arraybuffer" loop autoplay autofocus playsinline>
@@ -111,7 +133,7 @@
     <!-- for ihop -->
 
     <a-nft videohandler type='nft' url='/assets/images/ihop2' *ngIf="parameterid == 'ihop'">
-        <a-video src="#Ihop" position="50 -10 -175" rotation="-90 0 0" scale="10 10 2" animation="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000;" width='120' height='120'>
+        <a-video src="#Ihop" position="50 -10 -175" rotation="-90 0 0" scale="10 10 2" width='120' height='120'>
         </a-video>
     </a-nft>
 

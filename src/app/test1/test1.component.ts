@@ -1,6 +1,9 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, SimpleChanges } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
+import { ApiService } from '../api.service';
+
+
 @Component({
   selector: 'app-test1',
   templateUrl: './test1.component.html',
@@ -15,21 +18,53 @@ export class Test1Component implements OnInit {
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
-
-public parameterid:any;
+ public sound: any;
+  public parameterid: any;
   constructor(route: ActivatedRoute,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) {
+    private ngZone: NgZone,
+    public apiService:ApiService) {
     console.log(route.snapshot.params.id);
     this.parameterid = route.snapshot.params.id;
-   }
+
+
+
+  }
 
   ngOnInit(): void {
+
+    setInterval(() => {
+
+      var boxEl = document.querySelector('a-nft');
+      this.sound = document.querySelector("#sound");
+      boxEl.addEventListener('markerFound', function () {
+        console.log('+++++++++');
+        this.mapsAPILoader.load().then(() => {
+          this.setCurrentLocation();
+          this.geoCoder = new google.maps.Geocoder;
+        });
+        // boxEl.setAttribute('nft','');
+        // this.sound.play();
+      }.bind(this));
+
+      boxEl.addEventListener('markerLost', function () {
+        //   console.log('+++++++++',boxEl);
+        console.log('++++------+++++');
+        // boxEl.setAttribute('nft','');
+        // this.sound.play();
+      }.bind(this));
+      // });  
+
+      console.log(boxEl, '=====');
+    }, 1000);
+
+
+
+
+
+
     //load Places Autocomplete
-    this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
-    });
+   
   }
 
   // Get Current Location Coordinates
@@ -52,6 +87,10 @@ public parameterid:any;
           this.address = results[0].formatted_address;
           this.zoom = 12;
           this.address = results[0].formatted_address;
+          console.log(this.address);
+          this.apiService.ResolveViaPost({latdata:latitude, londata:longitude, trackablename:this.parameterid, webaddress:this.address},'addtrackforweb').subscribe((res:any)=>{
+            console.log(res,'+++++++')
+          })
         } else {
           window.alert('No results found');
         }
@@ -61,8 +100,11 @@ public parameterid:any;
 
     });
   }
-  changed(event:any){
+  changed(event: any) {
     console.log('+++++++')
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
   }
 
 }
